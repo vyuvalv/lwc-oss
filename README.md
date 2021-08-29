@@ -7,6 +7,7 @@
 
 ## How to start?
 - Clone this repository and all will be setup for you. 
+- `git clone https://github.com/vyuvalv/lwc-oss.git` 
 - Run `npm install` from this project directory.
 - `npm run build` - will build our package
 - Then Start simple by running `yarn watch` (or `npm run watch`
