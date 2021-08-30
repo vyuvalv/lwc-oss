@@ -2,7 +2,7 @@ import '@lwc/synthetic-shadow';
 import { createElement } from 'lwc';
 
 import MainApp from 'core/app';
-const app = createElement('main-app', { is: MainApp });
+const app = createElement('core-app', { is: MainApp });
 
 // eslint-disable-next-line @lwc/lwc/no-document-query
 const element = document.querySelector('#main');

@@ -19,11 +19,28 @@
 
 # The Steps to follow for DIY
 - Run on your terminal `npx create-lwc-app my-app` - it will create the base app project to start from.
-- The CLI command will ask a few questions - Take the simple setup route, as we will change the files as we go.
+- Take the simple setup route, as we will change the files as we go.
+
+    - The command will create the basic structure and ask a few questions:
+        * Do you want to use the simple setup? Yes
+        * Standard Web App
+        * Do you want a basic Express API server? Yes
+
+        Once its done intalling all dependencies go into your project.
+
+    Open in VS Code:
+    *   `code my-app`
 
 1. Install the latest following dependencies with `npm install`
     - Go to your `project.json` file
-    - Add the following dependencies
+    - Add the following dependencies:
+        * `@salesforce-ux/design-system` - Salesforce lightning design system
+        * `lightning-base-components` - The open source UI base components.
+        * `@lwc/synthetic-shadow` - Add the shaddow dom
+    - Optional:
+        * `jsforce` - Connection to Salesforce
+        * `axios` - Making Rest Calls easier
+        * `dotenv`- Storing parameters used for the connection to Salesforce Connected App option
 
     ```json
     "dependencies": {
@@ -46,9 +63,10 @@
         },
     ```
 
-2. Setup Webpack or use lwc-services
-    - To setup lwc-services configuration file - `lwc-services.config.js`
+2. Setup the LWC services processes (Very similar to webpack configuration file):
+    - Go to your lwc-services configuration file - `lwc-services.config.js`
     - This will build the our bundled package on `./dist` filder.
+    - Transfer the SLDS assets folder into our Resources folder
 
     ```js
     // Find the full example of all available configuration options at
@@ -76,7 +94,8 @@
     };
     ```
 3. Add Lightning Base Components
-    -  lwc.config.json - to include the LWC base components
+    - lwc.config.json - to include the LWC base components
+    - It provides a powerful reusable base components to get started with UI build. 
 
     ```js
         {
@@ -125,21 +144,23 @@
 5. Our Client App
     -  Now let's setup our `index` files that runs our LWC app as a container. 
     -  Setup your `index.js`
+    -  Include Shaddow Dom and append the LWC App
 
     ```js
         import '@lwc/synthetic-shadow';
         import { createElement } from 'lwc';
-        import MyApp from 'my/app';
+        import MyApp from 'core/app';
 
-        const app = createElement('my-app', { is: MyApp });
+        const app = createElement('core-app', { is: MyApp });
+        // Get the div element that will hold our LWC App
+        const element = document.querySelector('#main');
+        // To append the LWC
+        element.appendChild(app);
     ```
 
-- I also like to add browser navigation here which adds the Browser Url path as a public parmater of the main app.
+    - I also like to add browser history control for navigation here which adds the Browser Url path as a public paramater for the main app.
 
     ```js
-    // Get the div element that will hold our LWC App
-    const element = document.querySelector('#main');
-
     window.addEventListener("DOMContentLoaded", () => {
         // sets page in browser history 
         const pageName = setHistoryPage();
@@ -172,6 +193,7 @@
 
 - Inside your `index.html`
 - We Just need to change the reference to our Lightning Design resources, which we setup earlier to be copied into our `resources` folder.
+- Change the path to each resource link
 
 ```html
 <!--  index.html  -->  
@@ -205,3 +227,25 @@
 - `npm run build` - will build our package
 - Then Start simple by running `yarn watch` (or `npm run watch`
 
+### Add LWC Components
+
+* To add new components simply create the component folder inside the modules folder
+* We will add it into `./client/modules/c` folder in our modules to match the way Salesforce Project use it. 
+
+
+> Component bundle will have the following structure
+
+```html
+ <template></template>
+```
+
+```js
+import { LightningElement, api, track } from 'lwc';
+export default class ComponentName extends LightningElement {}
+```
+> Calling your component from parent html
+
+- use `folderName-component-name` 
+```html
+<c-component-name></c-component-name>
+```
