@@ -1,9 +1,9 @@
 {
     "modules": [{
-            "dir": "src/client/modules"
+           "dir": "src/client/modules"
         },
         {
-            "npm": "lightning-base-components"
+           "npm": "lightning-base-components"
         }
     ]
 }
