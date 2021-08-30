@@ -1,4 +1,4 @@
-/**
+/*
  * Universal Unique Id Generator
  * @return {String} Unique Id messages
  */
@@ -7,8 +7,9 @@ export function createUUID() {
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
       );
 }
-
-// Check all required inputs are populated or pop input validity
+/*
+ * Check all required form inputs are populated and pop input validity on each
+ */
 export function reportFormValidity(inputs, message = 'Input is required') {
     return [...inputs].reduce((validSoFar, inputField) => {
         if (!inputField.checkValidity()) { inputField.setCustomValidity(message) };

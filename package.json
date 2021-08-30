@@ -1,7 +1,7 @@
 {
     "name": "lwc-oss",
     "version": "0.0.1",
-    "author": "vyuvalv",
+    "author": "Yuval Vardi",
     "bugs": "https://github.com/vyuvalv/lwc-oss/issues",
     "dependencies": {
         "@lwc/synthetic-shadow": "^1.17.6",
