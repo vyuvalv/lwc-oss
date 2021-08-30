@@ -5,8 +5,8 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+// ACTIVATE MODULES
 app.use(helmet(), compression(), express.json());
-
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 5000;
@@ -14,7 +14,8 @@ const SERVER_URL = `http://${HOST}:${PORT}`;
 // PRODUCTION BUILD
 const DIST_DIR = './dist';
 
-// API Endpoints Sample
+// API Sample Endpoints 
+
 // GET
 app.get("/api/v1/data", (req, res) => {
     // Grab query parameters from URL
