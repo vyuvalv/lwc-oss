@@ -1,9 +1,10 @@
 # Lightning Web Components OSS - Starter Kit
+- Official Documentation - https://lwc.dev/ 
 - This Project is using Lightning Web Components OSS
-- It Includes Salesforce Lightning Design System (SLDS) amd Lightning Base Components  
-- Basic setup using Express JS Server on NodeJS
-- Browser Navigation routes and some API sample calls.
-- Official Documentation - https://lwc.dev/
+- It Includes Salesforce ![Lightning Design System (SLDS)](https://www.lightningdesignsystem.com/) amd ![Lightning Base Components](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/lightning_overview.htm)
+- Basic setup using ![[Express JS](https://expressjs.com/) Server on ![NodeJS](https://nodejs.org/en/)
+- Browser Navigation routes and some basic API sample calls.
+- Start reusing LWC both for *in and out* a Salesforce Org and allow local development with hot reloading for LWC. 
 
 ## Quick Preview
 ![Preview](./docs/Hola.png)
