@@ -1,4 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
+import { getData, postData } from '../../data/services/services';
 
 const menuTabs = ['home', 'debug'];
 const LOGO = './resources/lwc.png';
@@ -18,7 +19,7 @@ export default class App extends LightningElement {
 
     @track alert = {};
     showAlert = false;
-    @track logger = 'Nothing to show yet';
+    @track _logger = 'Nothing to show yet';
     @track errors;
 
     connectedCallback() {
@@ -30,6 +31,30 @@ export default class App extends LightningElement {
         event.preventDefault();
         const activeTab = event.target.value;
         this.navigate(activeTab);
+    }
+
+    async handleFetch() {
+        try {
+            const payload = await getData('hello');
+            console.log('get data :', payload.data);
+            this._logger = payload.data;
+        }
+        catch (error) {
+            console.log('error ', error);
+            this.errors = error;
+        }
+    }
+    async handlePost() {
+        try {
+            const request = { message: 'Hellow' };
+            const payload = await postData('MyTopic', request);
+            console.log('post data ', payload.data);
+            this._logger = payload.data;
+        }
+        catch (error) {
+            console.log('error ' , error);
+            this.errors = error;
+        }
     }
 
     // handle messages from child components
@@ -73,4 +98,10 @@ export default class App extends LightningElement {
         document.title = this._pathName;
     }
 
+    // Display for DEBUG
+    get logger() {
+        return JSON.stringify(this._logger, null, ' ');
+    }
+
+  
 }
