@@ -1,8 +1,8 @@
-# OSS Lightning Web Component
+# Lightning Web Components OSS - Starter Kit
 - This Project is using Lightning Web Components OSS
-- It Include Lightning Base Components
-- Includes SLDS
-- Include a Basic setup of Express JS Server on NodeJS
+- It Includes Salesforce Lightning Design System (SLDS) amd Lightning Base Components  
+- Basic setup using Express JS Server on NodeJS
+- Browser Navigation routes and some API sample calls.
 - Official Documentation - https://lwc.dev/
 
 ## How to start?
