@@ -14,13 +14,14 @@ const SERVER_URL = `http://${HOST}:${PORT}`;
 // PRODUCTION BUILD
 const DIST_DIR = './dist';
 
-
+// API Endpoints Sample
+// GET
 app.get("/api/v1/data", (req, res) => {
     // Grab query parameters from URL
     const query = req.query;
     res.send({ data: { query, success: true } });
 });
-
+// POST
 app.post("/api/v1/service/:type", (req, res) => {
     // Grab parameters from URL Path
     const parameters = req.params.type;

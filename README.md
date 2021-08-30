@@ -95,10 +95,10 @@
         const compression = require('compression');
         const helmet = require('helmet');
         const express = require('express');
-
+        const path = require('path');
+        // Express server
         const app = express();
-        app.use(helmet());
-        app.use(compression());
+        app.use(helmet(), compression(), express.json());
 
         const HOST = process.env.HOST || 'localhost';
         const PORT = process.env.PORT || 5000;
@@ -107,7 +107,10 @@
         const DIST_DIR = './dist';
 
         app.use(express.static(DIST_DIR));
-
+        // Use SPA and ignore any url path locations and always serves index
+        app.use('*', (req, res) => {
+            res.sendFile(path.resolve(DIST_DIR, 'index.html'));
+        });
         app.listen(PORT, () => {
             console.log(`✅  Local Server started: ${SERVER_URL}`)
         });
