@@ -1,8 +1,8 @@
 # Lightning Web Components OSS - Starter Kit
 - Official Documentation - https://lwc.dev/ 
 - This Project is using Lightning Web Components OSS
-- It Includes Salesforce ![Lightning Design System (SLDS)](https://www.lightningdesignsystem.com/) amd ![Lightning Base Components](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/lightning_overview.htm)
-- Basic setup using ![[Express JS](https://expressjs.com/) Server on ![NodeJS](https://nodejs.org/en/)
+- It Includes Salesforce [Lightning Design System (SLDS)](https://www.lightningdesignsystem.com/) amd [Lightning Base Components](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/lightning_overview.htm)
+- Basic setup using [Express JS](https://expressjs.com/) Server on [NodeJS](https://nodejs.org/en/)
 - Browser Navigation routes and some basic API sample calls.
 - Start reusing LWC both for *in and out* a Salesforce Org and allow local development with hot reloading for LWC. 
 
@@ -141,6 +141,23 @@
 
     ```
 
+- I've also added here some sample API Calls
+    ```js
+        // GET
+        app.get("/api/v1/data", (req, res) => {
+            // Grab query parameters from URL
+            const query = req.query;
+            res.send({ data: { query, success: true } });
+        });
+        // POST
+        app.post("/api/v1/service/:type", (req, res) => {
+            // Grab parameters from URL Path
+            const parameters = req.params.type;
+            // Grab body request payload
+            const body = req.body;
+            res.send({ data: { parameters, body } });
+        });
+    ```
 
 5. Our Client App
     -  Now let's setup our `index` files that runs our LWC app as a container. 
@@ -223,13 +240,8 @@
 
 ```
 
-## Build and Run it
-
-- `npm run build` - will build our package
-- Then Start simple by running `yarn watch` (or `npm run watch`
-
 ### Add LWC Components
-
+* That's it we are ready to start building more components inside this template.
 * To add new components simply create the component folder inside the modules folder
 * We will add it into `./client/modules/c` folder in our modules to match the way Salesforce Project use it. 
 
@@ -250,3 +262,9 @@ export default class ComponentName extends LightningElement {}
 ```html
 <c-component-name></c-component-name>
 ```
+
+## Build and Run it
+
+- `npm run build` - will build our package
+- Then Start simple by running `yarn watch` (or `npm run watch`
+- View on your port - by default `http://localhost:3001` for DEV and hor reloading and  `http://localhost:5000` for production view.
